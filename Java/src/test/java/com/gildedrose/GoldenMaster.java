@@ -1,5 +1,6 @@
 package com.gildedrose;
 
+import static com.gildedrose.GildedRoseRunner.runGildedRoseForDays;
 import static java.nio.file.Files.newOutputStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -38,23 +39,9 @@ public class GoldenMaster {
 		Path resultFile = Files.createTempFile("GildedRose.", ".actual." + days);
 		try (OutputStream out = newOutputStream(resultFile);
 			 PrintStream printOut = new PrintStream(out)) {
-			run(app, days, printOut);
+			runGildedRoseForDays(app, days, printOut);
 		}
 
 		assertThat(resultFile).hasSameTextualContentAs(expected.toAbsolutePath().normalize());
-	}
-
-	private static void run(GildedRose app, int days, PrintStream out) {
-		out.println("OMGHAI!");
-
-		for (int i = 0; i <= days; i++) {
-			out.println("-------- day " + i + " --------");
-			out.println("name, sellIn, quality");
-			for (Item item : app.items) {
-				out.println(item);
-			}
-			out.println();
-			app.updateQuality();
-		}
 	}
 }
