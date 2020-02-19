@@ -19,13 +19,9 @@ class GildedRose {
 
 	public void updateQuality() {
 		for (Item item : items) {
-			updateQuality(item);
+			getItemQualityUpdater(item.name)
+					.decreaseSellInAndUpdateQuality(item);
 		}
-	}
-
-	private static void updateQuality(Item item) {
-		getItemQualityUpdater(item.name)
-				.decreaseSellInAndUpdateQuality(item);
 	}
 
 	private static ItemQualityUpdater getItemQualityUpdater(String itemName) {
