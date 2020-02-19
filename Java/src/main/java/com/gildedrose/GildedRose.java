@@ -19,71 +19,19 @@ class GildedRose {
 	}
 
 	private static void updateQuality(Item item) {
+		getItemQualityUpdater(item).accept(item);
+	}
+
+	private static ItemQualityUpdater getItemQualityUpdater(Item item) {
 		switch (item.name) {
 			case AGED_BRIE:
-				updateQualityOfAgedBrie(item);
-				break;
+				return ItemQualityUpdater.AGED_BRIE;
 			case BACKSTAGE_PASSES:
-				updateQualityOfBackstagePasses(item);
-				break;
+				return ItemQualityUpdater.BACKSTAGE_PASSES;
 			case SULFURAS:
-				updateQualityOfSulfuras(item);
-				break;
+				return ItemQualityUpdater.LEGENDARY;
 			default:
-				updateQualityOfSimpleItem(item);
-				break;
-		}
-	}
-
-	private static void updateQualityOfAgedBrie(Item item) {
-		item.sellIn--;
-
-		increaseQuality(item);
-		if (item.sellIn < 0) {
-			increaseQuality(item);
-		}
-	}
-
-	private static void updateQualityOfBackstagePasses(Item item) {
-		item.sellIn--;
-
-		if (item.sellIn < 0) {
-			item.quality = 0;
-		} else if (item.quality < 50) {
-			item.quality++;
-
-			if (item.sellIn < 10) {
-				increaseQuality(item);
-			}
-
-			if (item.sellIn < 5) {
-				increaseQuality(item);
-			}
-		}
-	}
-
-	private static void updateQualityOfSulfuras(Item item) {
-		// do nothing
-	}
-
-	private static void updateQualityOfSimpleItem(Item item) {
-		item.sellIn--;
-
-		decreaseQuality(item);
-		if (item.sellIn < 0) {
-			decreaseQuality(item);
-		}
-	}
-
-	private static void decreaseQuality(Item item) {
-		if (item.quality > 0) {
-			item.quality--;
-		}
-	}
-
-	private static void increaseQuality(Item item) {
-		if (item.quality < 50) {
-			item.quality++;
+				return ItemQualityUpdater.DEFAULT;
 		}
 	}
 }
