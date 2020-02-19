@@ -36,64 +36,57 @@ class GildedRose {
 	}
 
 	private static void updateQualityOfAgedBrie(Item item) {
-		updateQualityOfSimpleItem(item);
+		if (item.quality < 50) {
+			item.quality++;
+		}
+
+		item.sellIn--;
+
+		if (item.sellIn < 0) {
+			if (item.quality < 50) {
+				item.quality++;
+			}
+		}
 	}
 
 	private static void updateQualityOfBackstagePasses(Item item) {
-		updateQualityOfSimpleItem(item);
-	}
+		if (item.quality < 50) {
+			item.quality++;
 
-	private static void updateQualityOfSulfuras(Item item) {
-		updateQualityOfSimpleItem(item);
-	}
-
-	private static void updateQualityOfSimpleItem(Item item) {
-		if (!item.name.equals(AGED_BRIE)
-				&& !item.name.equals(BACKSTAGE_PASSES)) {
-			if (item.quality > 0) {
-				if (!item.name.equals(SULFURAS)) {
-					item.quality--;
-				}
-			}
-		} else {
-			if (item.quality < 50) {
-				item.quality++;
-
-				if (item.name.equals(BACKSTAGE_PASSES)) {
-					if (item.sellIn < 11) {
-						if (item.quality < 50) {
-							item.quality++;
-						}
-					}
-
-					if (item.sellIn < 6) {
-						if (item.quality < 50) {
-							item.quality++;
-						}
-					}
-				}
-			}
-		}
-
-		if (!item.name.equals(SULFURAS)) {
-			item.sellIn--;
-		}
-
-		if (item.sellIn < 0) {
-			if (!item.name.equals(AGED_BRIE)) {
-				if (!item.name.equals(BACKSTAGE_PASSES)) {
-					if (item.quality > 0) {
-						if (!item.name.equals(SULFURAS)) {
-							item.quality--;
-						}
-					}
-				} else {
-					item.quality = 0;
-				}
-			} else {
+			if (item.sellIn < 11) {
 				if (item.quality < 50) {
 					item.quality++;
 				}
+			}
+
+			if (item.sellIn < 6) {
+				if (item.quality < 50) {
+					item.quality++;
+				}
+			}
+		}
+
+		item.sellIn--;
+
+		if (item.sellIn < 0) {
+			item.quality = 0;
+		}
+	}
+
+	private static void updateQualityOfSulfuras(Item item) {
+		// do nothing
+	}
+
+	private static void updateQualityOfSimpleItem(Item item) {
+		if (item.quality > 0) {
+			item.quality--;
+		}
+
+		item.sellIn--;
+
+		if (item.sellIn < 0) {
+			if (item.quality > 0) {
+				item.quality--;
 			}
 		}
 	}
