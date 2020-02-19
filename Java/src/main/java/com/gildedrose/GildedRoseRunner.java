@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-import static com.gildedrose.ItemsFileParser.parseItemsFile;
+import static com.gildedrose.item.ItemsFileParser.parseItemsFile;
 import static java.lang.Integer.parseInt;
 
 import java.io.IOException;

@@ -1,4 +1,6 @@
-package com.gildedrose;
+package com.gildedrose.item.quality;
+
+import com.gildedrose.Item;
 
 public interface ItemQualityUpdater {
 

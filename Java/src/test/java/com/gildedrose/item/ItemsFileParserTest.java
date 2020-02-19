@@ -1,6 +1,6 @@
-package com.gildedrose;
+package com.gildedrose.item;
 
-import static com.gildedrose.ItemsFileParser.parseItemsFile;
+import static com.gildedrose.item.ItemsFileParser.parseItemsFile;
 import static java.nio.file.Files.createTempFile;
 import static java.nio.file.Files.writeString;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -8,6 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.IOException;
 import java.nio.file.Path;
 
+import com.gildedrose.Item;
 import org.junit.jupiter.api.Test;
 
 class ItemsFileParserTest {

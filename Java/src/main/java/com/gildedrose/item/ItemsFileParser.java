@@ -1,4 +1,4 @@
-package com.gildedrose;
+package com.gildedrose.item;
 
 import static java.lang.Integer.parseInt;
 
@@ -9,6 +9,8 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
+
+import com.gildedrose.Item;
 
 public class ItemsFileParser {
 

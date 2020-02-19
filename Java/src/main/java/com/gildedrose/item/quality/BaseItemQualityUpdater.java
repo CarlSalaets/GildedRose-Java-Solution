@@ -1,6 +1,8 @@
-package com.gildedrose;
+package com.gildedrose.item.quality;
 
-public enum StandardItemQualityUpdater implements ItemQualityUpdater {
+import com.gildedrose.Item;
+
+public enum BaseItemQualityUpdater implements ItemQualityUpdater {
 	DEFAULT {
 		@Override
 		public void updateQuality(Item item) {
