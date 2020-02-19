@@ -19,6 +19,35 @@ class GildedRose {
 	}
 
 	private static void updateQuality(Item item) {
+		switch (item.name) {
+			case AGED_BRIE:
+				updateQualityOfAgedBrie(item);
+				break;
+			case BACKSTAGE_PASSES:
+				updateQualityOfBackstagePasses(item);
+				break;
+			case SULFURAS:
+				updateQualityOfSulfuras(item);
+				break;
+			default:
+				updateQualityOfSimpleItem(item);
+				break;
+		}
+	}
+
+	private static void updateQualityOfAgedBrie(Item item) {
+		updateQualityOfSimpleItem(item);
+	}
+
+	private static void updateQualityOfBackstagePasses(Item item) {
+		updateQualityOfSimpleItem(item);
+	}
+
+	private static void updateQualityOfSulfuras(Item item) {
+		updateQualityOfSimpleItem(item);
+	}
+
+	private static void updateQualityOfSimpleItem(Item item) {
 		if (!item.name.equals(AGED_BRIE)
 				&& !item.name.equals(BACKSTAGE_PASSES)) {
 			if (item.quality > 0) {
