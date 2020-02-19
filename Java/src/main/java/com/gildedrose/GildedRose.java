@@ -19,19 +19,20 @@ class GildedRose {
 	}
 
 	private static void updateQuality(Item item) {
-		getItemQualityUpdater(item).accept(item);
+		getItemQualityUpdater(item)
+				.decreaseSellInAndUpdateQuality(item);
 	}
 
 	private static ItemQualityUpdater getItemQualityUpdater(Item item) {
 		switch (item.name) {
 			case AGED_BRIE:
-				return ItemQualityUpdater.AGED_BRIE;
+				return StandardItemQualityUpdater.AGED_BRIE;
 			case BACKSTAGE_PASSES:
-				return ItemQualityUpdater.BACKSTAGE_PASSES;
+				return StandardItemQualityUpdater.BACKSTAGE_PASSES;
 			case SULFURAS:
-				return ItemQualityUpdater.LEGENDARY;
+				return StandardItemQualityUpdater.LEGENDARY;
 			default:
-				return ItemQualityUpdater.DEFAULT;
+				return StandardItemQualityUpdater.DEFAULT;
 		}
 	}
 }
